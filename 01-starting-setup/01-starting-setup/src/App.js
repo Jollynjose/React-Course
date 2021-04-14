@@ -1,7 +1,11 @@
+import Welcome from './component/welcome';
+import Text from './component/text';
+
 function App() {
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <Welcome/>
+      <Text/>
     </div>
   );
 }
