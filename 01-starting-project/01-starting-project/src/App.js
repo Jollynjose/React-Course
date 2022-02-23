@@ -3,24 +3,29 @@ import React, { useState } from 'react';
 import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList';
 import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
 import './App.css';
+import { format, parse, toDate, parseIso, parseISO } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([
     { text: 'Do all exercises!', id: 'g1' },
-    { text: 'Finish the course!', id: 'g2' }
+    { text: 'Finish the course!', id: 'g2' },
   ]);
 
-  const addGoalHandler = enteredText => {
-    setCourseGoals(prevGoals => {
+  let date = new Date().toISOString();
+  let d = parseISO(format(new Date(), 'yyyy-MM-dd')).toISOString();
+  console.log(d);
+  const addGoalHandler = (enteredText) => {
+    setCourseGoals((prevGoals) => {
       const updatedGoals = [...prevGoals];
-      updatedGoals.unshift({ text: enteredText, id: "g1" });
+      updatedGoals.unshift({ text: enteredText, id: 'g1' });
       return updatedGoals;
     });
   };
 
-  const deleteItemHandler = goalId => {
-    setCourseGoals(prevGoals => {
-      const updatedGoals = prevGoals.filter(goal => goal.id !== goalId);
+  const deleteItemHandler = (goalId) => {
+    setCourseGoals((prevGoals) => {
+      const updatedGoals = prevGoals.filter((goal) => goal.id !== goalId);
       return updatedGoals;
     });
   };
